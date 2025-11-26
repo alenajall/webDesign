@@ -3,7 +3,7 @@
 A fully responsive, modern static website for the Football Agency Sierra Leone (FASL).  
 Built from hand-drawn wireframes using HTML5 & CSS3 only – no frameworks.
 
-Live Demo: https://alenajall.github.io/webDesign/  
+Live Demo: https://github.com/alenajall/webDesign 
 
 
  Features
