@@ -1,16 +1,15 @@
-Alhaji Abubakarr Jalloh -5263
+group 7
 DIT1101
- 
- 
- FASL – Football Agency Sierra Leone
+
+FASL – Football Agency Sierra Leone
 
 A fully responsive, modern static website for the Football Agency Sierra Leone (FASL).  
 Built from hand-drawn wireframes using HTML5 & CSS3 only – no frameworks.
 
-Live Demo: https://github.com/alenajall/webDesign 
+Live Demo: https://github.com/alenajall/webDesign
 
+Features
 
- Features
 - 100% responsive (desktop + mobile)
 - Clean, professional design matching hand-drawn wireframes exactly
 - Real Font Awesome social media icons (Facebook, Instagram, X)
@@ -21,6 +20,7 @@ Live Demo: https://github.com/alenajall/webDesign
 - Fast loading – pure HTML/CSS
 
   Project Pages
+
 - index.html - Home (Hero + News + Featured Players)
 - players.html - All players with filter and pagination
 - matches.html = Fixtures & Results table

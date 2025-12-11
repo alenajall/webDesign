@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Players - FASL</title>
+    <link rel="icon" href="images/logo2.jpg" type="image/jpg">
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
 </head>
@@ -12,7 +13,10 @@
 <body>
     <header>
         <nav class="container">
-            <div class="logo">FASL</div>
+            <div class="logo">
+                <img src="images/logo2.jpg" alt="FASL Logo">
+                <span>FASL</span>
+            </div>
             <div class="nav-links">
                 <a href="index.html">Home</a>
                 <a href="players.html">Players</a>
@@ -21,12 +25,28 @@
                 <a href="contact.html">Contact</a>
             </div>
         </nav>
+
     </header>
 
     <div class="container" style="margin-top:120px;">
-        <h2>Filter Players</h2>
-        <input type="text" placeholder="Search players..." style="width:100%; padding:16px; margin-bottom:3rem; border:2px solid #ddd; border-radius:12px; font-size:1.1rem;">
+        <h2>Our Players</h2>
+        <div class="filters">
+            <div class="filter-group">
+                <label for="position-filter">Position:</label>
+                <select id="position-filter">
+            <option value="all">All Positions</option>
+            <option value="Forward">Forward</option>
+            <option value="Striker">Striker</option>
+            <option value="Defender">Defender</option>
+            <option value="Midfielder">Midfielder</option>
+            <option value="Goalkeeper">Goalkeeper</option>
+          </select>
+            </div>
 
+            <div class="filter-group">
+                <input type="text" id="search-input" placeholder="Search players..." />
+            </div>
+        </div>
         <div class="players-grid">
             <div class="player-card">
                 <img src="images/kei_kamara.jpeg" alt="Kei Kamara">
