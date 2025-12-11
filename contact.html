@@ -39,106 +39,115 @@
         </div>
 
         <h2 style="margin-top:6rem;">FIND US</h2>
-        <div class="card" style="max-width:800px; margin:0 auto; text-align:center;">
-            <p style="font-size:1.4rem; margin:1.5rem 0;"><strong>Address:</strong><br>14B Liverpool Street, Freetown, Sierra Leone</p>
-            <p style="font-size:1.4rem; margin:1.5rem 0;"><strong>Phone:</strong><br>+232 78 123 456</p>
-            <p style="font-size:1.4rem; margin:1.5rem 0;"><strong>Email:</strong><br>info@faslagency.com</p>
 
-            <div style="margin:3rem 0;">
-                <h3>Follow Us</h3>
-                <div style="display:flex; justify-content:center; gap:60px; margin-top:1rem;">
-                    <a href="https://facebook.com/faslagency" target="_blank" style="color:#1877F2; font-size:5rem;">
+        <!-- Contact info + social card -->
+        <div class="findus-card">
+            <div class="findus-details">
+                <p><strong>Address:</strong><br> 14B Liverpool Street,<br> Freetown, Sierra Leone
+                </p>
+
+                <p><strong>Phone:</strong><br> +232 78 123 456
+                </p>
+
+                <p><strong>Email:</strong><br> info@faslagency.com
+                </p>
+            </div>
+
+            <div class="findus-social">
+                <p class="findus-social-title">Follow Us</p>
+                <div class="findus-social-icons">
+                    <a href="https://facebook.com/faslagency" target="_blank">
                         <i class="fab fa-facebook-f"></i>
                     </a>
-                    <a href="https://instagram.com/faslagency" target="_blank" style="color:#E4405F; font-size:5rem;">
+                    <a href="https://instagram.com/faslagency" target="_blank">
                         <i class="fab fa-instagram"></i>
                     </a>
-                    <a href="https://x.com/faslagency" target="_blank" style="color:#000000; font-size:5rem;">
+                    <a href="https://x.com/faslagency" target="_blank">
                         <i class="fab fa-x-twitter"></i>
                     </a>
                 </div>
             </div>
-
-            <!-- Replace the old gray box with this -->
-            <div class="map-container">
-                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3930.118456789!2d-13.234567!3d8.484012!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zOMKwMjgnNDQuNCJOIDEzwrAxMycwOS4zIlc!5e0!3m2!1sen!2ssl!4v1234567890" width="100%" height="350"
-                    style="border:0; border-radius:15px;" allowfullscreen="" loading="lazy">
-    </iframe>
-            </div>
         </div>
-    </div>
 
-    <footer>
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-left">
-                    <p><strong>Football Agency Sierra Leone</strong></p>
-                    <p>14B Liverpool Street, Freetown, Sierra Leone</p>
-                    <p>Email: info@faslagency.com</p>
-                </div>
-                <div class="social-icons">
-                    <a href="https://facebook.com/faslagency" target="_blank"><i class="fab fa-facebook-f"></i></a>
-                    <a href="https://instagram.com/faslagency" target="_blank"><i class="fab fa-instagram"></i></a>
-                    <a href="https://x.com/faslagency" target="_blank"><i class="fab fa-x-twitter"></i></a>
-                </div>
-            </div>
-            <p class="copyright">© 2025 FASL. Made with Love By Alhaji Abubakarr Jalloh</p>
+        <!-- Map below the card -->
+        <div class="findus-map">
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3930.118456789!2d-13.234567!3d8.484012!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zOMKwMjgnNDQuNCJOIDEzwrAxMycwOS4zIlc!5e0!3m2!1sen!2ssl!4v1234567890" loading="lazy"
+                allowfullscreen="" referrerpolicy="no-referrer-when-downgrade">
+            </iframe>
         </div>
-    </footer>
-   
-    <script>
-document.addEventListener('DOMContentLoaded', function () {
-    /* ========= 1) NEXT MATCH COUNTDOWN (ONLY RUNS WHERE CARD EXISTS) ========= */
-    const card = document.querySelector('.next-match-card');
-    if (card) {
-        const kickoffString = card.getAttribute('data-kickoff');
-        if (kickoffString) {
-            const kickoffTime = new Date(kickoffString);
 
-            const daysEl  = card.querySelector('.cd-days');
-            const hoursEl = card.querySelector('.cd-hours');
-            const minsEl  = card.querySelector('.cd-mins');
-            const secsEl  = card.querySelector('.cd-secs');
-            const statusEl = card.querySelector('.countdown-status');
+        <footer>
+            <div class="container">
+                <div class="footer-content">
+                    <div class="footer-left">
+                        <p><strong>Football Agency Sierra Leone</strong></p>
+                        <p>14B Liverpool Street, Freetown, Sierra Leone</p>
+                        <p>Email: info@faslagency.com</p>
+                    </div>
+                    <div class="social-icons">
+                        <a href="https://facebook.com/faslagency" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                        <a href="https://instagram.com/faslagency" target="_blank"><i class="fab fa-instagram"></i></a>
+                        <a href="https://x.com/faslagency" target="_blank"><i class="fab fa-x-twitter"></i></a>
+                    </div>
+                </div>
+                <p class="copyright">© 2025 FASL. Made with Love By Alhaji Abubakarr Jalloh</p>
+            </div>
+        </footer>
 
-            function updateCountdown() {
-                const now = new Date();
-                const diff = kickoffTime - now;
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                /* ========= 1) NEXT MATCH COUNTDOWN (ONLY RUNS WHERE CARD EXISTS) ========= */
+                const card = document.querySelector('.next-match-card');
+                if (card) {
+                    const kickoffString = card.getAttribute('data-kickoff');
+                    if (kickoffString) {
+                        const kickoffTime = new Date(kickoffString);
 
-                if (diff <= 0) {
-                    daysEl.textContent  = '00';
-                    hoursEl.textContent = '00';
-                    minsEl.textContent  = '00';
-                    secsEl.textContent  = '00';
-                    statusEl.textContent = 'Match is in progress or finished.';
-                    clearInterval(timer);
-                    return;
+                        const daysEl = card.querySelector('.cd-days');
+                        const hoursEl = card.querySelector('.cd-hours');
+                        const minsEl = card.querySelector('.cd-mins');
+                        const secsEl = card.querySelector('.cd-secs');
+                        const statusEl = card.querySelector('.countdown-status');
+
+                        function updateCountdown() {
+                            const now = new Date();
+                            const diff = kickoffTime - now;
+
+                            if (diff <= 0) {
+                                daysEl.textContent = '00';
+                                hoursEl.textContent = '00';
+                                minsEl.textContent = '00';
+                                secsEl.textContent = '00';
+                                statusEl.textContent = 'Match is in progress or finished.';
+                                clearInterval(timer);
+                                return;
+                            }
+
+                            const totalSeconds = Math.floor(diff / 1000);
+                            const days = Math.floor(totalSeconds / (60 * 60 * 24));
+                            const hours = Math.floor((totalSeconds / (60 * 60)) % 24);
+                            const mins = Math.floor((totalSeconds / 60) % 60);
+                            const secs = Math.floor(totalSeconds % 60);
+
+                            daysEl.textContent = String(days).padStart(2, '0');
+                            hoursEl.textContent = String(hours).padStart(2, '0');
+                            minsEl.textContent = String(mins).padStart(2, '0');
+                            secsEl.textContent = String(secs).padStart(2, '0');
+
+                            statusEl.textContent = '';
+                        }
+
+                        updateCountdown();
+                        const timer = setInterval(updateCountdown, 1000);
+                    }
                 }
 
-                const totalSeconds = Math.floor(diff / 1000);
-                const days  = Math.floor(totalSeconds / (60 * 60 * 24));
-                const hours = Math.floor((totalSeconds / (60 * 60)) % 24);
-                const mins  = Math.floor((totalSeconds / 60) % 60);
-                const secs  = Math.floor(totalSeconds % 60);
 
-                daysEl.textContent  = String(days).padStart(2, '0');
-                hoursEl.textContent = String(hours).padStart(2, '0');
-                minsEl.textContent  = String(mins).padStart(2, '0');
-                secsEl.textContent  = String(secs).padStart(2, '0');
 
-                statusEl.textContent = '';
-            }
-
-            updateCountdown();
-            const timer = setInterval(updateCountdown, 1000);
-        }
-    }
-
-   
-    
-});
-</script>
+            });
+        </script>
 </body>
+
 </html>
 
 

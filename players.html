@@ -47,37 +47,29 @@
                 <input type="text" id="search-input" placeholder="Search players..." />
             </div>
         </div>
+        <h2 id="players">OUR PLAYERS</h2>
+
         <div class="players-grid">
-            <div class="player-card">
+            <!-- Kei Kamara -->
+            <a href="#kei-kamara-profile" class="player-card player-link">
                 <img src="images/kei_kamara.jpeg" alt="Kei Kamara">
                 <h3>Kei Kamara</h3>
-                <p>Forward</p>
-            </div>
-            <div class="player-card">
+                <p>FORWARD</p>
+            </a>
+
+            <!-- Juma Bah -->
+            <a href="#juma-bah-profile" class="player-card player-link">
                 <img src="images/juma_bah.jpeg" alt="Juma Bah">
                 <h3>Juma Bah</h3>
-                <p>Defender</p>
-            </div>
-            <div class="player-card">
+                <p>DEFENDER</p>
+            </a>
+
+            <!-- Augustus Kargbo -->
+            <a href="#augustus-kargbo-profile" class="player-card player-link">
                 <img src="images/augustus_kargbo.jpg" alt="Augustus Kargbo">
                 <h3>Augustus Kargbo</h3>
-                <p>Striker</p>
-            </div>
-            <div class="player-card">
-                <img src="images/buya_turay.jpeg" alt="Mohamed Buya Turay">
-                <h3>Mohamed Buya Turay</h3>
-                <p>Forward</p>
-            </div>
-            <div class="player-card">
-                <img src="images/steven_caulker.jpeg" alt="Steven Caulker">
-                <h3>Steven Caulker</h3>
-                <p>Defender</p>
-            </div>
-            <div class="player-card">
-                <img src="images/Mohamed_Kallon2.jpg" alt="Mohamed Kallon">
-                <h3>Mohamed Kallon</h3>
-                <p>Legend</p>
-            </div>
+                <p>STRIKER</p>
+            </a>
         </div>
 
         <div style="text-align:center; margin:4rem 0;">
@@ -85,6 +77,78 @@
             <span style="padding:12px 18px; background:#ddd; border-radius:50%; margin:0 8px;">2</span>
             <span style="padding:12px 18px; background:#ddd; border-radius:50%; margin:0 8px;">3</span>
             <span style="padding:12px 24px; background:#000; color:white; border-radius:50%;">→</span>
+        </div>
+    </div>
+
+    <!-- Player profiles (CSS-only popups) -->
+
+    <div id="kei-kamara-profile" class="player-profile-overlay">
+        <div class="player-profile-card">
+            <a href="#players" class="profile-close">&times;</a>
+            <div class="profile-header">
+                <img src="images/kei_kamara.jpeg" alt="Kei Kamara">
+                <div>
+                    <h3>Kei Kamara</h3>
+                    <p class="profile-position">Forward</p>
+                    <p class="profile-age">Age: 40</p>
+                    <p class="profile-club">Current Club: LAFC</p>
+                </div>
+            </div>
+            <div class="profile-body">
+                <h4>Club History</h4>
+                <ul>
+                    <li>LAFC (USA)</li>
+                    <li>Minnesota United</li>
+                    <li>Columbus Crew</li>
+                    <li>Norwich City (England)</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div id="juma-bah-profile" class="player-profile-overlay">
+        <div class="player-profile-card">
+            <a href="#players" class="profile-close">&times;</a>
+            <div class="profile-header">
+                <img src="images/juma_bah.jpeg" alt="Juma Bah">
+                <div>
+                    <h3>Juma Bah</h3>
+                    <p class="profile-position">Defender</p>
+                    <p class="profile-age">Age: 24</p>
+                    <p class="profile-club">Current Club: FASL United</p>
+                </div>
+            </div>
+            <div class="profile-body">
+                <h4>Club History</h4>
+                <ul>
+                    <li>FASL United (Sierra Leone)</li>
+                    <li>Bo Rangers</li>
+                    <li>Local Academy Graduate</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div id="augustus-kargbo-profile" class="player-profile-overlay">
+        <div class="player-profile-card">
+            <a href="#players" class="profile-close">&times;</a>
+            <div class="profile-header">
+                <img src="images/augustus_kargbo.jpg" alt="Augustus Kargbo">
+                <div>
+                    <h3>Augustus Kargbo</h3>
+                    <p class="profile-position">Striker</p>
+                    <p class="profile-age">Age: 25</p>
+                    <p class="profile-club">Current Club: Cesena</p>
+                </div>
+            </div>
+            <div class="profile-body">
+                <h4>Club History</h4>
+                <ul>
+                    <li>Cesena (Italy)</li>
+                    <li>Crotone</li>
+                    <li>Sierra Leone National Team</li>
+                </ul>
+            </div>
         </div>
     </div>
 
@@ -107,60 +171,61 @@
     </footer>
     >
     <script>
-document.addEventListener('DOMContentLoaded', function () {
-    /* ========= 1) NEXT MATCH COUNTDOWN (ONLY RUNS WHERE CARD EXISTS) ========= */
-    const card = document.querySelector('.next-match-card');
-    if (card) {
-        const kickoffString = card.getAttribute('data-kickoff');
-        if (kickoffString) {
-            const kickoffTime = new Date(kickoffString);
+        document.addEventListener('DOMContentLoaded', function() {
+            /* ========= 1) NEXT MATCH COUNTDOWN (ONLY RUNS WHERE CARD EXISTS) ========= */
+            const card = document.querySelector('.next-match-card');
+            if (card) {
+                const kickoffString = card.getAttribute('data-kickoff');
+                if (kickoffString) {
+                    const kickoffTime = new Date(kickoffString);
 
-            const daysEl  = card.querySelector('.cd-days');
-            const hoursEl = card.querySelector('.cd-hours');
-            const minsEl  = card.querySelector('.cd-mins');
-            const secsEl  = card.querySelector('.cd-secs');
-            const statusEl = card.querySelector('.countdown-status');
+                    const daysEl = card.querySelector('.cd-days');
+                    const hoursEl = card.querySelector('.cd-hours');
+                    const minsEl = card.querySelector('.cd-mins');
+                    const secsEl = card.querySelector('.cd-secs');
+                    const statusEl = card.querySelector('.countdown-status');
 
-            function updateCountdown() {
-                const now = new Date();
-                const diff = kickoffTime - now;
+                    function updateCountdown() {
+                        const now = new Date();
+                        const diff = kickoffTime - now;
 
-                if (diff <= 0) {
-                    daysEl.textContent  = '00';
-                    hoursEl.textContent = '00';
-                    minsEl.textContent  = '00';
-                    secsEl.textContent  = '00';
-                    statusEl.textContent = 'Match is in progress or finished.';
-                    clearInterval(timer);
-                    return;
+                        if (diff <= 0) {
+                            daysEl.textContent = '00';
+                            hoursEl.textContent = '00';
+                            minsEl.textContent = '00';
+                            secsEl.textContent = '00';
+                            statusEl.textContent = 'Match is in progress or finished.';
+                            clearInterval(timer);
+                            return;
+                        }
+
+                        const totalSeconds = Math.floor(diff / 1000);
+                        const days = Math.floor(totalSeconds / (60 * 60 * 24));
+                        const hours = Math.floor((totalSeconds / (60 * 60)) % 24);
+                        const mins = Math.floor((totalSeconds / 60) % 60);
+                        const secs = Math.floor(totalSeconds % 60);
+
+                        daysEl.textContent = String(days).padStart(2, '0');
+                        hoursEl.textContent = String(hours).padStart(2, '0');
+                        minsEl.textContent = String(mins).padStart(2, '0');
+                        secsEl.textContent = String(secs).padStart(2, '0');
+
+                        statusEl.textContent = '';
+                    }
+
+                    updateCountdown();
+                    const timer = setInterval(updateCountdown, 1000);
                 }
-
-                const totalSeconds = Math.floor(diff / 1000);
-                const days  = Math.floor(totalSeconds / (60 * 60 * 24));
-                const hours = Math.floor((totalSeconds / (60 * 60)) % 24);
-                const mins  = Math.floor((totalSeconds / 60) % 60);
-                const secs  = Math.floor(totalSeconds % 60);
-
-                daysEl.textContent  = String(days).padStart(2, '0');
-                hoursEl.textContent = String(hours).padStart(2, '0');
-                minsEl.textContent  = String(mins).padStart(2, '0');
-                secsEl.textContent  = String(secs).padStart(2, '0');
-
-                statusEl.textContent = '';
             }
 
-            updateCountdown();
-            const timer = setInterval(updateCountdown, 1000);
-        }
-    }
 
-    
 
-    
-    
-});
-</script>
+
+
+        });
+    </script>
 </body>
+
 </html>
 
 

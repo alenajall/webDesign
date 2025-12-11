@@ -86,26 +86,99 @@ nav {
 }
 
 
-/* HERO SLIDER (no JS) */
+/* Home banners */
 
-.hero {
-    background: linear-gradient(rgba(0, 0, 0, 0.78), rgba(0, 0, 0, 0.78)), url('../images/hero_background.png') center/cover no-repeat;
-    height: 75vh;
+.home-banners {
+    padding: 3rem 0 1rem;
+}
+
+.banner-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 1.5rem;
+}
+
+.banner-card {
+    background: #ffffff;
+    border-radius: 16px;
+    padding: 1.8rem 1.6rem;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-height: 150px;
+}
+
+
+/* HERO SLIDER (CSS-only) */
+
+.hero-slider {
+    position: relative;
     margin-top: 90px;
+    height: 75vh;
+    overflow: hidden;
+    padding: 0;
+    /* don't inherit section padding */
+}
+
+
+/* hide the radios */
+
+.hero-slider input[type="radio"] {
+    display: none;
+}
+
+.hero-slides {
+    position: relative;
+    height: 100%;
+}
+
+
+/* each slide sits on top of each other and is hidden by default */
+
+.hero-slide {
+    position: absolute;
+    inset: 0;
     display: flex;
     justify-content: center;
     align-items: center;
     text-align: center;
-    color: white;
+    padding: 0 1.5rem;
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.7s ease-in-out;
 }
 
-.hero h1 {
-    font-size: 3.6rem;
+
+/* dark overlay on top of each background */
+
+.hero-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(rgba(0, 0, 0, 0.78), rgba(0, 0, 0, 0.78));
+}
+
+.hero-content {
+    position: relative;
+    color: #fff;
+    max-width: 800px;
+}
+
+.hero-content h1 {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+}
+
+.hero-content p {
+    font-size: 1.1rem;
     margin-bottom: 1.5rem;
 }
 
 
-/* keep your button styles if you already have them */
+/* buttons container */
 
 .hero-buttons {
     display: flex;
@@ -149,8 +222,10 @@ nav {
     display: flex;
     gap: 0.6rem;
     z-index: 10;
-    /* ensure dots are on top */
 }
+
+
+/* single, correct hero-dot rule */
 
 .hero-dot {
     width: 16px;
@@ -159,15 +234,6 @@ nav {
     border: 2px solid #fff;
     cursor: pointer;
     background: rgba(255, 255, 255, 0.3);
-}
-
-.hero-dot {
-    width: 10px;
-    height: 10px;
-    border-radius: 50%;
-    border: 2px solid #fff;
-    cursor: pointer;
-    background: transparent;
 }
 
 
@@ -192,30 +258,6 @@ nav {
     .hero-content p {
         font-size: 1rem;
     }
-}
-
-
-/* Home banners */
-
-.home-banners {
-    padding: 3rem 0 1rem;
-}
-
-.banner-grid {
-    display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 1.5rem;
-}
-
-.banner-card {
-    background: #ffffff;
-    border-radius: 16px;
-    padding: 1.8rem 1.6rem;
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    min-height: 150px;
 }
 
 
@@ -294,31 +336,6 @@ nav {
 
 .btn-secondary {
     background: #444;
-}
-
-@media (max-width: 768px) {
-    .hero {
-        height: 70vh;
-        min-height: 450px;
-    }
-    .hero h1 {
-        font-size: 2.4rem;
-        /* smaller title on tablets/phones */
-    }
-    .btn {
-        padding: 0.8rem 1.8rem;
-        font-size: 1rem;
-    }
-}
-
-@media (max-width: 480px) {
-    .hero h1 {
-        font-size: 2rem;
-    }
-    .btn {
-        width: 85%;
-        max-width: 280px;
-    }
 }
 
 
@@ -1085,5 +1102,237 @@ html {
     .footer-content {
         flex-direction: column;
         text-align: center;
+    }
+}
+
+
+/* Contact page - FIND US block */
+
+.findus-card {
+    max-width: 800px;
+    margin: 0 auto 2.5rem;
+    background: #fff;
+    border-radius: 18px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+    padding: 2.5rem 3rem;
+    display: flex;
+    justify-content: space-between;
+    gap: 2.5rem;
+}
+
+.findus-details p {
+    margin-bottom: 1.2rem;
+    line-height: 1.6;
+    font-size: 1.05rem;
+}
+
+.findus-details strong {
+    display: inline-block;
+    margin-bottom: 0.25rem;
+}
+
+.findus-social {
+    min-width: 220px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.findus-social-title {
+    font-weight: 700;
+    margin-bottom: 1rem;
+    font-size: 1.1rem;
+}
+
+.findus-social-icons a {
+    font-size: 3rem;
+    margin: 0 0.6rem;
+    color: #000;
+    transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+.findus-social-icons a:nth-child(1) {
+    color: #1877F2;
+}
+
+
+/* Facebook */
+
+.findus-social-icons a:nth-child(2) {
+    color: #E4405F;
+}
+
+
+/* Instagram */
+
+.findus-social-icons a:nth-child(3) {
+    color: #000000;
+}
+
+
+/* X/Twitter */
+
+.findus-social-icons a:hover {
+    transform: translateY(-3px);
+    opacity: 0.8;
+}
+
+
+/* Map box under the card */
+
+.findus-map {
+    max-width: 800px;
+    margin: 0 auto;
+    border-radius: 18px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+}
+
+.findus-map iframe {
+    width: 100%;
+    height: 350px;
+    border: 0;
+}
+
+
+/* Stack card on mobile */
+
+@media (max-width: 768px) {
+    .findus-card {
+        flex-direction: column;
+        padding: 2rem;
+        text-align: left;
+    }
+    .findus-social {
+        text-align: left;
+        align-items: flex-start;
+    }
+    .findus-social-icons a {
+        font-size: 2.4rem;
+        margin: 0 0.5rem 0 0;
+    }
+}
+
+
+/* Clickable player cards */
+
+.player-link {
+    text-decoration: none;
+}
+
+
+/* Profile overlay (hidden by default) */
+
+.player-profile-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.65);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 2000;
+}
+
+
+/* Show when targeted (#id in the URL) */
+
+.player-profile-overlay:target {
+    display: flex;
+}
+
+
+/* Popup card */
+
+.player-profile-card {
+    background: #fff;
+    border-radius: 20px;
+    max-width: 650px;
+    width: 90%;
+    padding: 2rem 2.5rem;
+    box-shadow: 0 18px 40px rgba(0, 0, 0, 0.25);
+    position: relative;
+}
+
+
+/* Close button */
+
+.profile-close {
+    position: absolute;
+    top: 14px;
+    right: 18px;
+    font-size: 2rem;
+    text-decoration: none;
+    color: #333;
+}
+
+.profile-close:hover {
+    color: #000;
+}
+
+
+/* Header area */
+
+.profile-header {
+    display: flex;
+    gap: 1.5rem;
+    align-items: center;
+    margin-bottom: 1.5rem;
+}
+
+.profile-header img {
+    width: 140px;
+    height: 140px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 4px solid #000;
+}
+
+.profile-header h3 {
+    font-size: 1.8rem;
+    margin-bottom: 0.4rem;
+}
+
+.profile-position {
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+.profile-age,
+.profile-club {
+    color: #555;
+    margin-top: 0.2rem;
+}
+
+
+/* Body */
+
+.profile-body h4 {
+    margin-bottom: 0.6rem;
+}
+
+.profile-body ul {
+    padding-left: 1.2rem;
+}
+
+.profile-body li {
+    margin-bottom: 0.3rem;
+}
+
+
+/* Mobile */
+
+@media (max-width: 600px) {
+    .profile-header {
+        flex-direction: column;
+        text-align: center;
+    }
+    .profile-header img {
+        width: 120px;
+        height: 120px;
+    }
+    .player-profile-card {
+        padding: 1.8rem;
     }
 }

@@ -75,61 +75,62 @@
             <p class="copyright">© 2025 FASL. Made with Love By Alhaji Abubakarr Jalloh</p>
         </div>
     </footer>
-    
+
     <script>
-document.addEventListener('DOMContentLoaded', function () {
-    /* ========= 1) NEXT MATCH COUNTDOWN (ONLY RUNS WHERE CARD EXISTS) ========= */
-    const card = document.querySelector('.next-match-card');
-    if (card) {
-        const kickoffString = card.getAttribute('data-kickoff');
-        if (kickoffString) {
-            const kickoffTime = new Date(kickoffString);
+        document.addEventListener('DOMContentLoaded', function() {
+            /* ========= 1) NEXT MATCH COUNTDOWN (ONLY RUNS WHERE CARD EXISTS) ========= */
+            const card = document.querySelector('.next-match-card');
+            if (card) {
+                const kickoffString = card.getAttribute('data-kickoff');
+                if (kickoffString) {
+                    const kickoffTime = new Date(kickoffString);
 
-            const daysEl  = card.querySelector('.cd-days');
-            const hoursEl = card.querySelector('.cd-hours');
-            const minsEl  = card.querySelector('.cd-mins');
-            const secsEl  = card.querySelector('.cd-secs');
-            const statusEl = card.querySelector('.countdown-status');
+                    const daysEl = card.querySelector('.cd-days');
+                    const hoursEl = card.querySelector('.cd-hours');
+                    const minsEl = card.querySelector('.cd-mins');
+                    const secsEl = card.querySelector('.cd-secs');
+                    const statusEl = card.querySelector('.countdown-status');
 
-            function updateCountdown() {
-                const now = new Date();
-                const diff = kickoffTime - now;
+                    function updateCountdown() {
+                        const now = new Date();
+                        const diff = kickoffTime - now;
 
-                if (diff <= 0) {
-                    daysEl.textContent  = '00';
-                    hoursEl.textContent = '00';
-                    minsEl.textContent  = '00';
-                    secsEl.textContent  = '00';
-                    statusEl.textContent = 'Match is in progress or finished.';
-                    clearInterval(timer);
-                    return;
+                        if (diff <= 0) {
+                            daysEl.textContent = '00';
+                            hoursEl.textContent = '00';
+                            minsEl.textContent = '00';
+                            secsEl.textContent = '00';
+                            statusEl.textContent = 'Match is in progress or finished.';
+                            clearInterval(timer);
+                            return;
+                        }
+
+                        const totalSeconds = Math.floor(diff / 1000);
+                        const days = Math.floor(totalSeconds / (60 * 60 * 24));
+                        const hours = Math.floor((totalSeconds / (60 * 60)) % 24);
+                        const mins = Math.floor((totalSeconds / 60) % 60);
+                        const secs = Math.floor(totalSeconds % 60);
+
+                        daysEl.textContent = String(days).padStart(2, '0');
+                        hoursEl.textContent = String(hours).padStart(2, '0');
+                        minsEl.textContent = String(mins).padStart(2, '0');
+                        secsEl.textContent = String(secs).padStart(2, '0');
+
+                        statusEl.textContent = '';
+                    }
+
+                    updateCountdown();
+                    const timer = setInterval(updateCountdown, 1000);
                 }
-
-                const totalSeconds = Math.floor(diff / 1000);
-                const days  = Math.floor(totalSeconds / (60 * 60 * 24));
-                const hours = Math.floor((totalSeconds / (60 * 60)) % 24);
-                const mins  = Math.floor((totalSeconds / 60) % 60);
-                const secs  = Math.floor(totalSeconds % 60);
-
-                daysEl.textContent  = String(days).padStart(2, '0');
-                hoursEl.textContent = String(hours).padStart(2, '0');
-                minsEl.textContent  = String(mins).padStart(2, '0');
-                secsEl.textContent  = String(secs).padStart(2, '0');
-
-                statusEl.textContent = '';
             }
 
-            updateCountdown();
-            const timer = setInterval(updateCountdown, 1000);
-        }
-    }
 
-    
 
-    
-});
-</script>
+
+        });
+    </script>
 </body>
+
 </html>
 
 
