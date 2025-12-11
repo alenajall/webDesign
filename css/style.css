@@ -68,48 +68,223 @@ nav {
     font-weight: 600;
     font-size: 1.1rem;
     color: #333;
+    position: relative;
+    display: inline-block;
+    padding: 0.3rem 0.8rem;
+    border-radius: 999px;
+    transition: color 0.25s ease, background 0.25s ease, box-shadow 0.25s ease;
 }
+
+
+/* Glow on hover */
 
 .nav-links a:hover {
-    text-decoration: underline;
+    color: #fff;
+    background: linear-gradient(90deg, #ff3b3b, #007bff);
+    /* red → blue */
+    box-shadow: 0 0 12px rgba(0, 123, 255, 0.7);
 }
 
 
-/* Hero */
+/* HERO SLIDER (no JS) */
 
 .hero {
     background: linear-gradient(rgba(0, 0, 0, 0.78), rgba(0, 0, 0, 0.78)), url('../images/hero_background.png') center/cover no-repeat;
-    height: 80vh;
-    min-height: 500px;
-    margin-top: 0;
+    height: 75vh;
+    margin-top: 90px;
     display: flex;
-    flex-direction: column;
     justify-content: center;
     align-items: center;
     text-align: center;
     color: white;
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: center;
 }
 
 .hero h1 {
     font-size: 3.6rem;
-    margin-bottom: 2rem;
-    font-weight: 700;
-    line-height: 1.2;
-    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7);
-    max-width: 90%;
+    margin-bottom: 1.5rem;
 }
 
+
+/* keep your button styles if you already have them */
+
+.hero-buttons {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+
+/* background images for each slide */
+
+.slide-1 {
+    background-image: url('../images/hero_background.png');
+}
+
+.slide-2 {
+    background-image: url('../images/stadium.jpg');
+}
+
+.slide-3 {
+    background-image: url('../images/fans.jpg');
+}
+
+
+/* Show the correct slide based on which radio is checked */
+
+#hero-slide-1:checked~.hero-slides .slide-1,
+#hero-slide-2:checked~.hero-slides .slide-2,
+#hero-slide-3:checked~.hero-slides .slide-3 {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+
+/* dots at the bottom */
+
+.hero-dots {
+    position: absolute;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 0.6rem;
+    z-index: 10;
+    /* ensure dots are on top */
+}
+
+.hero-dot {
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    border: 2px solid #fff;
+    cursor: pointer;
+    background: rgba(255, 255, 255, 0.3);
+}
+
+.hero-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    border: 2px solid #fff;
+    cursor: pointer;
+    background: transparent;
+}
+
+
+/* highlight the active dot */
+
+#hero-slide-1:checked~.hero-dots label:nth-child(1),
+#hero-slide-2:checked~.hero-dots label:nth-child(2),
+#hero-slide-3:checked~.hero-dots label:nth-child(3) {
+    background: #fff;
+}
+
+
+/* responsive hero text */
+
+@media (max-width: 768px) {
+    .hero-slider {
+        height: 65vh;
+    }
+    .hero-content h1 {
+        font-size: 2.1rem;
+    }
+    .hero-content p {
+        font-size: 1rem;
+    }
+}
+
+
+/* Home banners */
+
+.home-banners {
+    padding: 3rem 0 1rem;
+}
+
+.banner-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 1.5rem;
+}
+
+.banner-card {
+    background: #ffffff;
+    border-radius: 16px;
+    padding: 1.8rem 1.6rem;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-height: 150px;
+}
+
+
+/* subtle coloured left borders for each banner */
+
+.banner-trials {
+    border-left: 6px solid #0d6efd;
+}
+
+.banner-registration {
+    border-left: 6px solid #198754;
+}
+
+.banner-partners {
+    border-left: 6px solid #ffc107;
+}
+
+.banner-text h3 {
+    font-size: 1.3rem;
+    margin-bottom: 0.4rem;
+}
+
+.banner-text p {
+    font-size: 0.95rem;
+    color: #555;
+}
+
+.banner-btn {
+    align-self: flex-start;
+    margin-top: 1rem;
+    padding: 0.55rem 1.3rem;
+    border-radius: 999px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    border: 1px solid #000;
+    background: #000;
+    color: #fff;
+    cursor: pointer;
+    transition: all 0.25s ease;
+}
+
+.banner-btn:hover {
+    background: #fff;
+    color: #000;
+}
+
+
+/* Stack banners on mobile */
+
+@media (max-width: 768px) {
+    .banner-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+
+/* Hero buttons */
+
 .btn {
+    display: inline-block;
     padding: 16px 48px;
     background: #000;
-    color: white;
+    color: #fff;
     border-radius: 50px;
     font-size: 1.3rem;
     margin: 0.8rem;
     cursor: pointer;
+    border: none;
+    transition: background 0.2s ease, transform 0.15s ease;
 }
 
 .btn:hover {
@@ -151,6 +326,13 @@ nav {
 
 section {
     padding: 7rem 0;
+}
+
+
+/* Remove default section padding from hero slider */
+
+.hero-slider {
+    padding: 0;
 }
 
 h2 {
@@ -435,6 +617,13 @@ h2 {
 
 /* Matches */
 
+
+/* extra fixtures start hidden */
+
+.extra-fixture {
+    display: none;
+}
+
 .tab-btn {
     padding: 14px 40px;
     border: none;
@@ -705,13 +894,192 @@ footer {
 }
 
 
+/* Match Announcements */
+
+.announcements-card {
+    margin: 2rem 0 3rem;
+    background: #fffdf3;
+    border-left: 5px solid #ffc107;
+}
+
+.announcement-list {
+    list-style: none;
+}
+
+.announcement-list li {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    gap: 0.75rem;
+    padding: 1rem 0;
+    border-bottom: 1px solid #f1e6b5;
+    font-size: 1rem;
+}
+
+.announcement-list li:last-child {
+    border-bottom: none;
+}
+
+.announcement-tag {
+    padding: 0.25rem 0.8rem;
+    border-radius: 999px;
+    font-size: 0.8rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    white-space: nowrap;
+}
+
+.announcement-tag.upcoming {
+    background: #ffc107;
+    color: #000;
+}
+
+.announcement-tag.important {
+    background: #dc3545;
+    color: #fff;
+}
+
+.announcement-tag.info {
+    background: #0d6efd;
+    color: #fff;
+}
+
+.announcement-text {
+    flex: 1;
+}
+
+.announcement-date {
+    font-weight: 600;
+    margin-right: 0.25rem;
+}
+
+
+/* Next Match Highlight */
+
+.next-match-section {
+    width: 90%;
+    max-width: 1100px;
+    margin: 120px auto 40px;
+}
+
+.next-match-section h2 {
+    text-align: left;
+    font-size: 2.2rem;
+    margin-bottom: 1.5rem;
+}
+
+.next-match-card {
+    background: #ffffff;
+    border-radius: 18px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+    padding: 2rem 2.5rem;
+    display: flex;
+    justify-content: space-between;
+    gap: 2.5rem;
+    align-items: center;
+    border-left: 6px solid #000;
+}
+
+.next-match-teams h3 {
+    font-size: 1.7rem;
+    margin-bottom: 0.6rem;
+}
+
+.next-match-teams h3 span {
+    font-weight: 400;
+    font-size: 1.1rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+}
+
+.next-match-venue {
+    font-weight: 600;
+    margin-bottom: 0.3rem;
+}
+
+.next-match-date-text {
+    color: #666;
+    font-size: 0.95rem;
+}
+
+.next-match-countdown {
+    text-align: center;
+}
+
+.countdown-label {
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    font-size: 0.8rem;
+    margin-bottom: 0.6rem;
+}
+
+.countdown-timer {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    margin-bottom: 0.3rem;
+}
+
+.countdown-timer div {
+    background: #000;
+    color: #fff;
+    border-radius: 12px;
+    padding: 0.6rem 0.9rem;
+    min-width: 65px;
+}
+
+.countdown-timer span {
+    display: block;
+    font-size: 1.3rem;
+    font-weight: 700;
+}
+
+.countdown-timer small {
+    display: block;
+    font-size: 0.65rem;
+    text-transform: uppercase;
+    opacity: 0.8;
+}
+
+.countdown-status {
+    font-size: 0.85rem;
+    color: #555;
+}
+
+
+/* Make card stack nicely on mobile */
+
+@media (max-width: 768px) {
+    .next-match-section {
+        margin-top: 100px;
+    }
+    .next-match-card {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    .next-match-countdown {
+        width: 100%;
+        align-items: center;
+    }
+}
+
+
+/* Smooth scrolling */
+
+html {
+    scroll-behavior: smooth;
+}
+
+
 /* Responsive */
 
 @media (max-width:768px) {
     .nav-links {
         display: none;
     }
-    .hero h1 {
+    .hero-content h1 {
         font-size: 2.6rem;
     }
     .footer-content {

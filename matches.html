@@ -29,12 +29,43 @@
 
     <div class="container" style="margin-top:120px;">
         <h2>MATCHES OVERVIEW</h2>
+
+        <!-- Tab buttons -->
         <div style="text-align:center; margin-bottom:3rem;">
-            <button class="tab-btn active">Fixtures</button>
-            <button class="tab-btn">Results</button>
+            <button class="tab-btn active" data-tab="fixtures">Fixtures</button>
+            <button class="tab-btn" data-tab="results">Results</button>
         </div>
 
-        <div class="card">
+        <!-- Match announcements -->
+        <div class="card announcements-card">
+            <h3 style="margin-bottom:1.5rem;">Match Announcements</h3>
+            <ul class="announcement-list">
+                <li>
+                    <span class="announcement-tag upcoming">Upcoming</span>
+                    <span class="announcement-text">
+                        <span class="announcement-date">26 Oct 2025 –</span>
+                        FASL United vs Leone Stars moved to <strong>4:00 PM</strong> at the National Stadium.
+                    </span>
+                </li>
+                <li>
+                    <span class="announcement-tag important">Important</span>
+                    <span class="announcement-text">
+                        <span class="announcement-date">02 Nov 2025 –</span>
+                        Kallon FC vs Bo Rangers: security checks will start earlier due to high attendance.
+                    </span>
+                </li>
+                <li>
+                    <span class="announcement-tag info">Info</span>
+                    <span class="announcement-text">
+                        <span class="announcement-date">09 Nov 2025 –</span>
+                        East End Lions vs Diamond Stars: student tickets available with valid ID.
+                    </span>
+                </li>
+            </ul>
+        </div>
+
+        <!-- Fixtures panel -->
+        <div class="card" id="fixtures-panel">
             <table>
                 <thead>
                     <tr>
@@ -44,6 +75,7 @@
                     </tr>
                 </thead>
                 <tbody>
+                    <!-- always-visible fixtures -->
                     <tr>
                         <td>26-10-2025</td>
                         <td>FASL United vs Leone Stars</td>
@@ -59,11 +91,59 @@
                         <td>East End Lions vs Diamond Stars</td>
                         <td>Wusum Sports Stadium</td>
                     </tr>
+
+                    <!-- extra fixtures (for "View All") -->
+                    <tr class="extra-fixture">
+                        <td>16-11-2025</td>
+                        <td>Blackpool FC vs FASL United</td>
+                        <td>National Stadium</td>
+                    </tr>
+                    <tr class="extra-fixture">
+                        <td>23-11-2025</td>
+                        <td>Bo Rangers vs East End Lions</td>
+                        <td>Bo Stadium</td>
+                    </tr>
                 </tbody>
             </table>
             <div style="text-align:center; margin-top:2rem;">
-                <button class="btn" style="background:#333;">View All →</button>
+                <button class="btn" style="background:#333;" id="view-all-fixtures">
+                    View All →
+                </button>
             </div>
+        </div>
+
+        <!-- Results panel -->
+        <div class="card" id="results-panel" style="display:none;">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Date</th>
+                        <th>Match</th>
+                        <th>Score</th>
+                        <th>Venue</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>19-10-2025</td>
+                        <td>FASL United vs Diamond Stars</td>
+                        <td>2 – 1</td>
+                        <td>National Stadium</td>
+                    </tr>
+                    <tr>
+                        <td>12-10-2025</td>
+                        <td>Bo Rangers vs East End Lions</td>
+                        <td>0 – 0</td>
+                        <td>Bo Stadium</td>
+                    </tr>
+                    <tr>
+                        <td>05-10-2025</td>
+                        <td>Kallon FC vs Blackpool FC</td>
+                        <td>3 – 2</td>
+                        <td>Wusum Sports Stadium</td>
+                    </tr>
+                </tbody>
+            </table>
         </div>
     </div>
 
@@ -84,6 +164,100 @@
             <p class="copyright">© 2025 FASL. Made with Love by Alhaji Abubakarr Jalloh</p>
         </div>
     </footer>
-</body>
 
+    
+
+    <script>
+    document.addEventListener('DOMContentLoaded', function () {
+        /* ========= NEXT MATCH COUNTDOWN (only if card exists) ========= */
+        const card = document.querySelector('.next-match-card');
+        if (card) {
+            const kickoffString = card.getAttribute('data-kickoff');
+            if (kickoffString) {
+                const kickoffTime = new Date(kickoffString);
+
+                const daysEl  = card.querySelector('.cd-days');
+                const hoursEl = card.querySelector('.cd-hours');
+                const minsEl  = card.querySelector('.cd-mins');
+                const secsEl  = card.querySelector('.cd-secs');
+                const statusEl = card.querySelector('.countdown-status');
+
+                function updateCountdown() {
+                    const now = new Date();
+                    const diff = kickoffTime - now;
+
+                    if (diff <= 0) {
+                        daysEl.textContent  = '00';
+                        hoursEl.textContent = '00';
+                        minsEl.textContent  = '00';
+                        secsEl.textContent  = '00';
+                        statusEl.textContent = 'Match is in progress or finished.';
+                        clearInterval(timer);
+                        return;
+                    }
+
+                    const totalSeconds = Math.floor(diff / 1000);
+                    const days  = Math.floor(totalSeconds / (60 * 60 * 24));
+                    const hours = Math.floor((totalSeconds / (60 * 60)) % 24);
+                    const mins  = Math.floor((totalSeconds / 60) % 60);
+                    const secs  = Math.floor(totalSeconds % 60);
+
+                    daysEl.textContent  = String(days).padStart(2, '0');
+                    hoursEl.textContent = String(hours).padStart(2, '0');
+                    minsEl.textContent  = String(mins).padStart(2, '0');
+                    secsEl.textContent  = String(secs).padStart(2, '0');
+
+                    statusEl.textContent = '';
+                }
+
+                updateCountdown();
+                const timer = setInterval(updateCountdown, 1000);
+            }
+        }
+
+       
+
+        
+
+        /* ========= MATCHES TABS: Fixtures / Results ========= */
+        const tabButtons = document.querySelectorAll('.tab-btn');
+        const fixturesPanel = document.getElementById('fixtures-panel');
+        const resultsPanel  = document.getElementById('results-panel');
+
+        if (tabButtons.length && fixturesPanel && resultsPanel) {
+            tabButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    const tab = button.dataset.tab;
+
+                    tabButtons.forEach(btn => btn.classList.remove('active'));
+                    button.classList.add('active');
+
+                    if (tab === 'fixtures') {
+                        fixturesPanel.style.display = 'block';
+                        resultsPanel.style.display  = 'none';
+                    } else if (tab === 'results') {
+                        fixturesPanel.style.display = 'none';
+                        resultsPanel.style.display  = 'block';
+                    }
+                });
+            });
+        }
+
+        /* ========= VIEW ALL FIXTURES ========= */
+        const viewAllBtn = document.getElementById('view-all-fixtures');
+        if (viewAllBtn) {
+            const extraRows = document.querySelectorAll('.extra-fixture');
+            // hide them initially
+            extraRows.forEach(row => row.style.display = 'none');
+
+            viewAllBtn.addEventListener('click', () => {
+                extraRows.forEach(row => {
+                    row.style.display = 'table-row';
+                });
+                viewAllBtn.style.display = 'none';
+            });
+        }
+    });
+    </script>
+</body>
 </html>
