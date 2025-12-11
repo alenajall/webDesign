@@ -23,10 +23,118 @@
         </nav>
     </header>
 
-    <section class="hero">
-        <h1>Promoting Sierra Leonean Football Talents to the World</h1>
-        <button class="btn">Join Us</button>
-        <button class="btn btn-secondary">Learn More</button>
+    <!-- HERO SLIDER (CSS) -->
+    <section class="hero-slider">
+
+        <!-- Hidden radios control which slide is shown -->
+        <input type="radio" name="hero-slide" id="hero-slide-1" checked>
+        <input type="radio" name="hero-slide" id="hero-slide-2">
+        <input type="radio" name="hero-slide" id="hero-slide-3">
+
+        <div class="hero-slides">
+            <!-- Slide 1 -->
+            <div class="hero-slide slide-1">
+                <div class="hero-overlay"></div>
+                <div class="hero-content">
+                    <h1>Promoting Sierra Leonean Football Talents to the World</h1>
+                    <p>Connecting local players to professional clubs across the globe.</p>
+                    <div class="hero-buttons">
+                        <a href="contact.html" class="btn">Join Us</a>
+                        <a href="about.html" class="btn btn-secondary">Learn More</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Slide 2 -->
+            <div class="hero-slide slide-2">
+                <div class="hero-overlay"></div>
+                <div class="hero-content">
+                    <h1>Scouting the Next Generation of Stars</h1>
+                    <p>FASL trials and youth programmes in every region of Sierra Leone.</p>
+                    <div class="hero-buttons">
+                        <a href="matches.html" class="btn">View Trial Matches</a>
+                        <a href="players.html" class="btn btn-secondary">See Our Players</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Slide 3 -->
+            <div class="hero-slide slide-3">
+                <div class="hero-overlay"></div>
+                <div class="hero-content">
+                    <h1>Professional Management. Real Opportunities.</h1>
+                    <p>Honest representation, education support, and career planning.</p>
+                    <div class="hero-buttons">
+                        <a href="contact.html" class="btn">Contact FASL</a>
+                        <a href="about.html" class="btn btn-secondary">About the Agency</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slider controls (dots) -->
+        <div class="hero-dots">
+            <label for="hero-slide-1" class="hero-dot"></label>
+            <label for="hero-slide-2" class="hero-dot"></label>
+            <label for="hero-slide-3" class="hero-dot"></label>
+        </div>
+    </section>
+
+   
+
+    <!-- NEXT MATCH HIGHLIGHT -->
+    <section class="next-match-section">
+        <h2>Next Match</h2>
+
+        <!-- Change the datetime below to your real next match -->
+        <div class="next-match-card" data-kickoff="2025-12-15T15:30:00">
+            <div class="next-match-teams">
+                <h3>Kallon FC <span>vs</span> Bo Rangers XI</h3>
+                <p class="next-match-venue">National Stadium, Freetown</p>
+                <p class="next-match-date-text">Sunday, 2 November 2025 – 3:30 PM</p>
+            </div>
+
+            <div class="next-match-countdown">
+                <p class="countdown-label">Kick-off in:</p>
+                <div class="countdown-timer">
+                    <div><span class="cd-days">00</span><small>Days</small></div>
+                    <div><span class="cd-hours">00</span><small>Hours</small></div>
+                    <div><span class="cd-mins">00</span><small>Minutes</small></div>
+                    <div><span class="cd-secs">00</span><small>Seconds</small></div>
+                </div>
+                <p class="countdown-status"></p>
+            </div>
+        </div>
+    </section>
+
+    <!-- HOME BANNERS -->
+
+    <section class="home-banners">
+        <div class="container banner-grid">
+             <div class="banner-card banner-trials">
+                <div class="banner-text">
+                    <h3>Upcoming Trials</h3>
+                    <p>Showcase your talent at our next FASL open trials across Sierra Leone.</p>
+                </div>
+                <a href="matches.html" class="banner-btn">View Trial Dates</a>
+             </div>
+
+             <div class="banner-card banner-registration">
+                <div class="banner-text">
+                    <h3>Player Registration</h3>
+                    <p>Are you a player looking for professional representation? Join our database.</p>
+                </div>
+                <a href="contact.html" class="banner-btn">Register Now</a>
+             </div>
+
+             <div class="banner-card banner-partners">
+                <div class="banner-text">
+                    <h3>Club & Agent Partnership</h3>
+                    <p>Work with FASL to scout, develop and sign the best talents from Sierra Leone.</p>
+                </div>
+                <a href="about.html" class="banner-btn">Register Now</a>
+             </div>
+        </div>
     </section>
 
     <div class="container">
@@ -39,7 +147,7 @@
                     <li>FASL Partners with Local Football Clubs</li>
                 </ul>
             </div>
-            <!-- NEW: Match Announcements -->
+
             <h2>MATCH ANNOUNCEMENTS</h2>
             <div class="card announcements-card">
                 <ul class="announcement-list">
@@ -62,6 +170,20 @@
                         <span class="announcement-text">
                             <span class="announcement-date">09 Nov 2025 –</span>
                             East End Lions vs Diamond Stars: Tickets now available at all FASL partner outlets.
+                        </span>
+                    </li>
+                    <li>
+                        <span class="announcement-tag info">Info</span>
+                        <span class="announcement-text">
+                            <span class="announcement-date">12 Nov 2025 –</span>
+                            FASL Youth Academy will host an open training session for U17 prospects.
+                        </span>
+                    </li>
+                    <li>
+                        <span class="announcement-tag upcoming">Info</span>
+                        <span class="announcement-text">
+                            <span class="announcement-date">15 Nov 2025 –</span>
+                            Freetown Derby: Blackpool FC vs East End Lions. Kick-off at 5:30.
                         </span>
                     </li>
                 </ul>
@@ -110,6 +232,64 @@
             <p class="copyright">© 2025 FASL. Made with Love by Alhaji Abubakarr Jalloh</p>
         </div>
     </footer>
-</body>
 
+    
+
+    <!-- JS: countdown + nav + back-to-top -->
+    <script>
+    document.addEventListener('DOMContentLoaded', function () {
+
+        /* ========= NEXT MATCH COUNTDOWN ========= */
+        const card = document.querySelector('.next-match-card');
+        if (card) {
+            const kickoffString = card.getAttribute('data-kickoff');
+            if (kickoffString) {
+                const kickoffTime = new Date(kickoffString);
+
+                const daysEl  = card.querySelector('.cd-days');
+                const hoursEl = card.querySelector('.cd-hours');
+                const minsEl  = card.querySelector('.cd-mins');
+                const secsEl  = card.querySelector('.cd-secs');
+                const statusEl = card.querySelector('.countdown-status');
+
+                function updateCountdown() {
+                    const now = new Date();
+                    const diff = kickoffTime - now;
+
+                    if (diff <= 0) {
+                        daysEl.textContent  = '00';
+                        hoursEl.textContent = '00';
+                        minsEl.textContent  = '00';
+                        secsEl.textContent  = '00';
+                        statusEl.textContent = 'Match is in progress or finished.';
+                        clearInterval(timer);
+                        return;
+                    }
+
+                    const totalSeconds = Math.floor(diff / 1000);
+                    const days  = Math.floor(totalSeconds / (60 * 60 * 24));
+                    const hours = Math.floor((totalSeconds / (60 * 60)) % 24);
+                    const mins  = Math.floor((totalSeconds / 60) % 60);
+                    const secs  = Math.floor(totalSeconds % 60);
+
+                    daysEl.textContent  = String(days).padStart(2, '0');
+                    hoursEl.textContent = String(hours).padStart(2, '0');
+                    minsEl.textContent  = String(mins).padStart(2, '0');
+                    secsEl.textContent  = String(secs).padStart(2, '0');
+
+                    statusEl.textContent = '';
+                }
+
+                updateCountdown();
+                const timer = setInterval(updateCountdown, 1000);
+            }
+        }
+
+        
+
+        
+    });
+    </script>
+
+</body>
 </html>
